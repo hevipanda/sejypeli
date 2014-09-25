@@ -44,14 +44,14 @@ public class HymynaamanSeikkailu : PhysicsGame
 
         kentta.Execute(RUUDUN_KOKO, RUUDUN_KOKO);
         Level.CreateBorders();
-        Level.Background.CreateGradient(Color.Aqua, Color.Black);
+        Level.Background.CreateGradient(Color.red, Color.Black);
     }
 
     void LisaaTaso(Vector paikka, double leveys, double korkeus)
     {
         PhysicsObject taso = PhysicsObject.CreateStaticObject(leveys, korkeus);
         taso.Position = paikka;
-        taso.Color = Color.Navy;
+        taso.Color = Color.black;
         Add(taso);
     }
 
