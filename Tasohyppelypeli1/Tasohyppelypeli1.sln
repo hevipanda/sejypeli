@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasohyppelypeli1", "Tasohyppelypeli1\Tasohyppelypeli1\Tasohyppelypeli1.csproj", "{F59479D1-4D1C-4CCA-8689-9B819FCB47ED}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Tasohyppelypeli1Content", "Tasohyppelypeli1\Tasohyppelypeli1Content\Tasohyppelypeli1Content.contentproj", "{CD471486-50CD-4765-8CA2-3F52E5584302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F59479D1-4D1C-4CCA-8689-9B819FCB47ED}.Debug|x86.ActiveCfg = Debug|x86
+		{F59479D1-4D1C-4CCA-8689-9B819FCB47ED}.Debug|x86.Build.0 = Debug|x86
+		{F59479D1-4D1C-4CCA-8689-9B819FCB47ED}.Release|x86.ActiveCfg = Release|x86
+		{F59479D1-4D1C-4CCA-8689-9B819FCB47ED}.Release|x86.Build.0 = Release|x86
+		{CD471486-50CD-4765-8CA2-3F52E5584302}.Debug|x86.ActiveCfg = Debug|x86
+		{CD471486-50CD-4765-8CA2-3F52E5584302}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
