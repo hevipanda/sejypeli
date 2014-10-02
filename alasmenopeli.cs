@@ -26,8 +26,8 @@ public class HymynaamanSeikkailu : PhysicsGame
         LuoKentta();
         LisaaNappaimet();
         LuoAikaLaskuri();
-
-        
+        MediaPlayer.Play("Element_of_happiness");
+        MediaPlayer.IsRepeating = true;
         Camera.Y = Level.Top - 100;
         Camera.Velocity = new Vector(0, -100);
         Camera.ZoomFactor = 0;
@@ -43,7 +43,8 @@ public class HymynaamanSeikkailu : PhysicsGame
         kentta.SetTileMethod('P', lisaaPahis); 
         kentta.Execute(RUUDUN_KOKO, RUUDUN_KOKO);
         Level.CreateBorders();
-        Level.Background.CreateGradient(Color.Aqua, Color.Black);
+        level.background.creategradient(color.red, color.Black);
+     
     }
 
     void LisaaTaso(Vector paikka, double leveys, double korkeus)
