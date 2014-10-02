@@ -43,7 +43,9 @@ public class Tasohyppelypeli2 : PhysicsGame
         kentta.SetTileMethod('#', LisaaTaso);
         kentta.SetTileMethod('*', LisaaTahti);
         kentta.SetTileMethod('N', LisaaPelaaja);
-        kentta.SetTileMethod('P', lisaaPahis); 
+        kentta.SetTileMethod('P', lisaaPahis);
+        kentta.SetTileMethod('B', lisaalaatikko);
+
         kentta.Execute(RUUDUN_KOKO, RUUDUN_KOKO);
         
         Level.CreateBorders();
@@ -127,15 +129,26 @@ public class Tasohyppelypeli2 : PhysicsGame
     void Liikuta(PlatformCharacter hahmo, double nopeus)
     {
         Angle kulma = hahmo.Angle;
-        kulma.Degrees += 10000;
+        kulma.Degrees += 15;
         hahmo.Angle = kulma;
         hahmo.Walk(nopeus);
     }
-
+    
     void Hyppaa(PlatformCharacter hahmo, double nopeus)
     {
         hahmo.Jump(nopeus);
     }
+
+    void lisaalaatikko(Vector paikka, double leveys, double korkeus)
+    {
+        PhysicsObject laatikko = new PhysicsObject(leveys, korkeus);
+        Add(laatikko);
+        laatikko.Position = paikka;
+        laatikko.Color = Color.Brown;
+        laatikko.Restitution = 0.2;
+
+    }
+        
 
     void tormaaPahikseen(PhysicsObject hahmo, PhysicsObject Pahis)
          {
