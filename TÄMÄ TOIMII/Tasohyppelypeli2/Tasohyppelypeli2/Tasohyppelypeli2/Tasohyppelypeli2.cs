@@ -27,7 +27,8 @@ public class Tasohyppelypeli2 : PhysicsGame
         LuoKentta();
         LisaaNappaimet();
         LuoAikaLaskuri();
-        
+        LuoPistelaskuri();
+
         MediaPlayer.Play("Element_of_happiness");
         MediaPlayer.IsRepeating = true;
 
@@ -54,8 +55,29 @@ public class Tasohyppelypeli2 : PhysicsGame
         Level.Background.CreateGradient(Color.Red, Color.Black);
 
     }
-   
 
+    IntMeter pisteLaskuri;
+
+    void LuoPistelaskuri()
+    {
+        pisteLaskuri = new IntMeter(0);
+
+        Label pisteNaytto = new Label();
+        pisteNaytto.X = Screen.Left + 100;
+        pisteNaytto.Y = Screen.Top - 100;
+        pisteNaytto.TextColor = Color.Black;
+        pisteNaytto.Color = Color.White;
+
+        pisteNaytto.BindTo(pisteLaskuri);
+        Add(pisteNaytto);
+        pisteNaytto.Title = "Tähdet";
+  
+    }
+
+    void lisaarajahdys(Vector paikka, double leveys, double korkeus )
+    {
+        
+    }
 
     void LisaaTaso(Vector paikka, double leveys, double korkeus)
     {
@@ -75,7 +97,7 @@ public class Tasohyppelypeli2 : PhysicsGame
          Pahis.Color = (Color.Black);
         Pahis.Tag = "pahis";
         Add(Pahis);
-        
+        AddCollisionHandler(pelaaja1, "pahis", CollisionHandler.ExplodeObject(100, true));
     }
     void LisaaTahti(Vector paikka, double leveys, double korkeus)
     {
@@ -91,9 +113,11 @@ public class Tasohyppelypeli2 : PhysicsGame
         PhysicsObject vihollinen = new PhysicsObject(leveys, korkeus);
         vihollinen.Position = paikka;
         
-        vihollinen.Tag = "pahis";
-        AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
+        vihollinen.Tag = "moi";
         Add(vihollinen);
+        
+       // AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
+        
     }
     void LisaaPelaaja(Vector paikka, double leveys, double korkeus)
     {
@@ -105,6 +129,7 @@ public class Tasohyppelypeli2 : PhysicsGame
 
         AddCollisionHandler(pelaaja1, "tahti", TormaaTahteen);
         Add(pelaaja1);
+        pelaaja1.IgnoresExplosions = true;
     }
 
 
@@ -154,20 +179,24 @@ public class Tasohyppelypeli2 : PhysicsGame
          {
              if (pelaaja1 == Pahis)
              {
+                 
                  pelaaja1.Destroy();
              }
         MessageDisplay.Add("Kuolit!!");
         pelaaja1.Destroy();
          }
+
     void TormaaTahteen(PhysicsObject hahmo, PhysicsObject tahti)
     {
         if (tahti == yläreuna)
         {
+          
             hahmo.Destroy();
         }
         maaliAani.Play();
         MessageDisplay.Add("Keräsit tähden!");
         tahti.Destroy();
+        pisteLaskuri.Value += 1;
     }
     void LuoAikaLaskuri()
     {
