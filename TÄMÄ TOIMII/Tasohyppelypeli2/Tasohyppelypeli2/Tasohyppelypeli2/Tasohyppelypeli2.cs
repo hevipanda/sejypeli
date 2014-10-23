@@ -52,7 +52,7 @@ public class Tasohyppelypeli2 : PhysicsGame
         Level.CreateBorders();
         yläreuna = Level.CreateTopBorder();
         Add(yläreuna);
-        Level.Background.CreateGradient(Color.Red, Color.Black);
+        Level.Background.CreateGradient(Color.Aqua, Color.Gray);
 
     }
 
@@ -70,25 +70,22 @@ public class Tasohyppelypeli2 : PhysicsGame
 
         pisteNaytto.BindTo(pisteLaskuri);
         Add(pisteNaytto);
-        pisteNaytto.Title = "Tähdet";
+        pisteNaytto.Title = "Timantit";
   
     }
 
-    void lisaarajahdys(Vector paikka, double leveys, double korkeus )
-    {
-        
-    }
+  
 
     void LisaaTaso(Vector paikka, double leveys, double korkeus)
     {
         PhysicsObject taso = PhysicsObject.CreateStaticObject(leveys, korkeus);
         taso.Position = paikka;
-        taso.Color = Color.Black;
+        taso.Color = Color.White;
         Add(taso);
     }
     void lisaaPahis(Vector paikka, double leveus, double korkeus)
     {
-        PhysicsObject Pahis = PhysicsObject.CreateStaticObject(2000, korkeus);
+        PhysicsObject Pahis = PhysicsObject.CreateStaticObject(2000, 5);
         Pahis.IgnoresCollisionResponse = false;
          Pahis.Position = paikka;
          Pahis.Y = Level.Top - 0;
@@ -123,7 +120,7 @@ public class Tasohyppelypeli2 : PhysicsGame
     {
         pelaaja1 = new PlatformCharacter(leveys, korkeus);
         pelaaja1.Position = paikka;
-        pelaaja1.Mass = 5.0;
+        pelaaja1.Mass = 10.0;
         pelaaja1.Image = pelaajanKuva;
         AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
 
@@ -194,7 +191,7 @@ public class Tasohyppelypeli2 : PhysicsGame
             hahmo.Destroy();
         }
         maaliAani.Play();
-        MessageDisplay.Add("Keräsit tähden!");
+        MessageDisplay.Add("Keräsit Timantteja!");
         tahti.Destroy();
         pisteLaskuri.Value += 1;
     }
