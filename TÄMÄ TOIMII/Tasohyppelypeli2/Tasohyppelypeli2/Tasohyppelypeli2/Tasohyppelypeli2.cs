@@ -55,7 +55,8 @@ public class Tasohyppelypeli2 : PhysicsGame
         Level.Background.CreateGradient(Color.Aqua, Color.Gray);
 
     }
-
+    
+    
     IntMeter pisteLaskuri;
 
     void LuoPistelaskuri()
@@ -80,12 +81,13 @@ public class Tasohyppelypeli2 : PhysicsGame
     {
         PhysicsObject taso = PhysicsObject.CreateStaticObject(leveys, korkeus);
         taso.Position = paikka;
-        taso.Color = Color.White;
+        taso.Color = Color.Black;
+       
         Add(taso);
     }
     void lisaaPahis(Vector paikka, double leveus, double korkeus)
     {
-        PhysicsObject Pahis = PhysicsObject.CreateStaticObject(2000, 5);
+        PhysicsObject Pahis = PhysicsObject.CreateStaticObject(50, 5);
         Pahis.IgnoresCollisionResponse = false;
          Pahis.Position = paikka;
          Pahis.Y = Level.Top - 0;
@@ -94,27 +96,31 @@ public class Tasohyppelypeli2 : PhysicsGame
          Pahis.Color = (Color.Black);
         Pahis.Tag = "pahis";
         Add(Pahis);
-        AddCollisionHandler(pelaaja1, "pahis", CollisionHandler.ExplodeObject(100, true));
+      
     }
+
+  
+    
+    
     void LisaaTahti(Vector paikka, double leveys, double korkeus)
     {
         PhysicsObject tahti = PhysicsObject.CreateStaticObject(leveys, korkeus);
         tahti.IgnoresCollisionResponse = true;
         tahti.Position = paikka;
         tahti.Image = tahtiKuva;
-        tahti.Tag = "tahti";
+        tahti.Tag = "tahti";        //yhteensä 75 mahdollista saada
         Add(tahti);
     }
     void LuoVihollinen(Vector paikka, double leveys, double korkeus)
     {
         PhysicsObject vihollinen = new PhysicsObject(leveys, korkeus);
         vihollinen.Position = paikka;
-        
+
         vihollinen.Tag = "moi";
         Add(vihollinen);
-        
-       // AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
-        
+
+        // AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
+
     }
     void LisaaPelaaja(Vector paikka, double leveys, double korkeus)
     {
@@ -123,10 +129,10 @@ public class Tasohyppelypeli2 : PhysicsGame
         pelaaja1.Mass = 10.0;
         pelaaja1.Image = pelaajanKuva;
         AddCollisionHandler(pelaaja1, "Pahis", tormaaPahikseen);
-
+          pelaaja1.LifetimeLeft = TimeSpan.FromSeconds(200.0);
         AddCollisionHandler(pelaaja1, "tahti", TormaaTahteen);
         Add(pelaaja1);
-        pelaaja1.IgnoresExplosions = true;
+        pelaaja1.IgnoresExplosions = false;
     }
 
 
@@ -134,7 +140,8 @@ public class Tasohyppelypeli2 : PhysicsGame
     {
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä ohjeet");
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, ConfirmExit, "Lopeta peli");
-
+        //Keyboard.Listen(Key.R, ButtonState.Pressed, BeginRun, "aloita alusta"); 
+        // ei toimi
         Keyboard.Listen(Key.Left, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, -nopeus);
         Keyboard.Listen(Key.Right, ButtonState.Down, Liikuta, "Liikkuu vasemmalle", pelaaja1, nopeus);
         Keyboard.Listen(Key.Up, ButtonState.Pressed, Hyppaa, "Pelaaja hyppää", pelaaja1, hyppyNopeus);
@@ -151,7 +158,7 @@ public class Tasohyppelypeli2 : PhysicsGame
     void Liikuta(PlatformCharacter hahmo, double nopeus)
     {
         Angle kulma = hahmo.Angle;
-        kulma.Degrees += 15;
+        kulma.Degrees -= 15;
         hahmo.Angle = kulma;
         hahmo.Walk(nopeus);
     }
@@ -177,12 +184,20 @@ public class Tasohyppelypeli2 : PhysicsGame
              if (pelaaja1 == Pahis)
              {
                  
-                 pelaaja1.Destroy();
-             }
-        MessageDisplay.Add("Kuolit!!");
-        pelaaja1.Destroy();
+            pelaaja1.Destroy();
+            AloitaAlusta();
+            }
          }
 
+    void AloitaAlusta()
+    {
+        ClearAll();
+        LuoKentta();
+        LisaaNappaimet();
+    }
+         
+    
+     
     void TormaaTahteen(PhysicsObject hahmo, PhysicsObject tahti)
     {
         if (tahti == yläreuna)
@@ -197,6 +212,8 @@ public class Tasohyppelypeli2 : PhysicsGame
     }
     void LuoAikaLaskuri()
     {
+        
+
         Timer aikaLaskuri = new Timer();
         aikaLaskuri.Start();
 
@@ -204,6 +221,7 @@ public class Tasohyppelypeli2 : PhysicsGame
         aikaNaytto.TextColor = Color.White;
         aikaNaytto.DecimalPlaces = 1;
         aikaNaytto.BindTo(aikaLaskuri.SecondCounter);
+ 
         Add(aikaNaytto);
     }
     
