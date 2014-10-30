@@ -8,7 +8,7 @@ using Jypeli.Widgets;
 
 public class Tasohyppelypeli2 : PhysicsGame
 {
-   const double nopeus = 400;
+   const double nopeus = 410;
     const double hyppyNopeus = 750;
     const int RUUDUN_KOKO = 50;
 
@@ -52,7 +52,7 @@ public class Tasohyppelypeli2 : PhysicsGame
         Level.CreateBorders();
         yläreuna = Level.CreateTopBorder();
         Add(yläreuna);
-        Level.Background.CreateGradient(Color.Aqua, Color.Gray);
+        Level.Background.CreateGradient(Color.Cyan, Color.DarkRed);
 
     }
     
