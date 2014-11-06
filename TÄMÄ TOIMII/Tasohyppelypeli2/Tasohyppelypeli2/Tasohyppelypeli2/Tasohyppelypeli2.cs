@@ -26,7 +26,7 @@ public class Tasohyppelypeli2 : PhysicsGame
 
         LuoKentta();
         LisaaNappaimet();
-        LuoAikaLaskuri();
+        //LuoAikaLaskuri();
         LuoPistelaskuri();
 
         MediaPlayer.Play("Element_of_happiness");
@@ -49,16 +49,13 @@ public class Tasohyppelypeli2 : PhysicsGame
 
         kentta.Execute(RUUDUN_KOKO, RUUDUN_KOKO);
         
-        Level.CreateBorders();
-        yläreuna = Level.CreateTopBorder();
-        Add(yläreuna);
+        
         Level.Background.CreateGradient(Color.Cyan, Color.DarkRed);
 
     }
-    
-    
+   
     IntMeter pisteLaskuri;
-
+   
     void LuoPistelaskuri()
     {
         pisteLaskuri = new IntMeter(0);
@@ -132,7 +129,7 @@ public class Tasohyppelypeli2 : PhysicsGame
           pelaaja1.LifetimeLeft = TimeSpan.FromSeconds(200.0);
         AddCollisionHandler(pelaaja1, "tahti", TormaaTahteen);
         Add(pelaaja1);
-        pelaaja1.IgnoresExplosions = false;
+       
     }
 
 
@@ -179,13 +176,13 @@ public class Tasohyppelypeli2 : PhysicsGame
     }
         
 
-    void tormaaPahikseen(PhysicsObject hahmo, PhysicsObject Pahis)
+    void tormaaPahikseen(PhysicsObject pelaaja1, PhysicsObject hahmo)
          {
-             if (pelaaja1 == Pahis)
+             if (hahmo == pelaaja1)
              {
                  
-            pelaaja1.Destroy();
             AloitaAlusta();
+
             }
          }
 
@@ -216,14 +213,12 @@ public class Tasohyppelypeli2 : PhysicsGame
 
         Timer aikaLaskuri = new Timer();
         aikaLaskuri.Start();
-
-        Label aikaNaytto = new Label();
+        Label aikaNaytto = new Label(); 
         aikaNaytto.TextColor = Color.White;
         aikaNaytto.DecimalPlaces = 1;
         aikaNaytto.BindTo(aikaLaskuri.SecondCounter);
- 
         Add(aikaNaytto);
-    }
+   }
     
         
 
